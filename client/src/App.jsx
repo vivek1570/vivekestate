@@ -12,6 +12,8 @@ import PrivateRoute from "./components/PrivateRoute";
 import EditListing from "./pages/EditListing";
 import ShowList from "./pages/ShowList";
 import Search from "./pages/Search";
+import Club from "./pages/Clubs"
+import CreateClub from "./pages/CreateClub";
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route path="/edit-listing/:id" element={<EditListing />} />
         </Route>
         <Route path="/about" element={<About />} />
+        <Route path="/club" element={<Club/>}/>
+        <Route path="/club/create_club" element={<CreateClub/>}/>
       </Routes>
     </BrowserRouter>
   );

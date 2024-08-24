@@ -12,6 +12,7 @@ function Home() {
   const [offerData, setOfferData] = useState([]);
   const [rentData, setRentData] = useState([]);
   const [saleData, setSaleData] = useState([]);
+  const [parkingData,setParkingData]=useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,9 +30,15 @@ function Home() {
       const data = await res.json();
       setSaleData(data);
     };
+    const fetchData3=async()=>{
+      const res=await fetch("/api/listing/get?parking=true&limit=4");
+      const data=await res.json();
+      setParkingData(data);
+    }
     fetchData1();
     fetchData2();
     fetchData();
+    fetchData3();
   }, []);
   console.log(offerData);
 
@@ -121,6 +128,24 @@ function Home() {
           {saleData.map((listing) => (
             <Listings key={listing._id} listing={listing} />
           ))}
+        </div>
+      </div>
+      {/* List  section  for type parking*/}
+      <div className="max-w-6xl mx-auto px-3 py-20">
+        <h1 className="text-slate-600 font-semibold text-2xl">
+          Recent places where parking is available
+        </h1>
+        <Link to={"/search?type=sale"}>
+          <p className="mb-5 text-sm hover:underline text-blue-800">
+            Show more places for parking...
+          </p>
+        </Link>
+        <div className="flex flex-wrap gap-8">
+          {
+            parkingData.map((list)=>(
+              <Listings key={list._id} listing={list}/>
+            ))
+          }
         </div>
       </div>
     </div>

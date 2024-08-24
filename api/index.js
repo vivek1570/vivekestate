@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import userRoutes from "./routes/user.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import listingRoutes from "./routes/listing.routes.js";
+import clubRoutes from "./routes/club.routes.js";
 dotenv.config();
 import cookieParser from "cookie-parser";
 import path from "path";
@@ -34,6 +35,7 @@ app.listen(port, () => {
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/listing", listingRoutes);
+app.use("/api/clubs",clubRoutes);
 
 
 app.use(express.static(path.join(__dirname, '/client/dist')));
